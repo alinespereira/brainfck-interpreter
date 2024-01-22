@@ -1,0 +1,51 @@
+cabal-version:      3.0
+name:               brainfck-interpreter
+version:            0.1.0.0
+-- synopsis:
+-- description:
+license:            MIT
+license-file:       LICENSE
+author:             Aline Pereira
+maintainer:         aline@datagurl.io
+-- copyright:
+category:           Development
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+-- extra-source-files:
+
+common properties
+    default-language:   Haskell2010
+    build-depends:      base ^>=4.15.1.0
+                      , mtl
+                      , containers
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+                    , properties
+    exposed-modules:  Brainfck
+                    , Brainfck.Program
+                    , Brainfck.Interpreter
+    hs-source-dirs:   src
+
+executable brainfck-interpreter
+    import:           warnings
+                    , properties
+    main-is:          Main.hs
+    build-depends:    brainfck-interpreter
+    hs-source-dirs:   app
+
+test-suite brainfck-interpreter-test
+    import:           warnings
+                    , properties
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Spec.hs
+    other-modules:    SpecHelper
+                    , Brainfck.ProgramSpec
+    build-depends:    hspec 
+                    , hspec-discover
+                    , QuickCheck
+                    , brainfck-interpreter

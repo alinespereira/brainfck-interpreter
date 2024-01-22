@@ -1,0 +1,17 @@
+# HSPEC_COLOR=yes cabal test --test-show-details=direct
+run = "HSPEC_COLOR=yes ghcid --color=always  --lint"
+entrypoint = "Main.hs"
+
+hidden = [".ghci", "ghci_wrapper.sh"]
+
+[nix]
+channel = "stable-22_11"
+
+[languages.haskell]
+pattern = "**/*.hs"
+
+[languages.haskell.languageServer]
+start = ["haskell-language-server-wrapper", "--lsp"]
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", ".ghci"]

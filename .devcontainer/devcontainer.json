@@ -1,0 +1,25 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "features": {
+        "ghcr.io/devcontainers-contrib/features/haskell:2": {
+            "installHLS": true,
+            "downgradeGhcToSupportHls": true,
+            "adjustBash": true,
+            "ghcVersion": "9.4.2",
+            "cabalVersion": "3.8.1.0",
+            "globalPackages": "cabal-install hlint hspec-discover ghcid"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "GitHub.codespaces",
+                "GitHub.vscode-pull-request-github",
+                "haskell.haskell",
+                "hoovercj.haskell-linter",
+                "justusadam.language-haskell"
+            ]
+        }
+    }
+}
