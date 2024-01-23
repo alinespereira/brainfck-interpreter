@@ -6,6 +6,7 @@ import Data.Sequence (Seq)
 import qualified Data.Sequence as S
 
 import Brainfck.Program
+import Brainfck.ProgramState
 import Brainfck.Interpreter
 
 
@@ -19,18 +20,17 @@ instructions = S.fromList
     , JumpForward
     , Increment
     , Increment
-    , Input
     , Output
     ]
 
-ps = initializeProgram program
+programState :: ProgramState
+programState = initializeProgram program
 
-execStateT runProgram ps
-
--- spec :: Spec
--- spec = do
---     describe "" $ do
---         context "" $ do
---             it "" $ do
---                 let p = initializeProgram program
---                 execStateT runProgram p `sohuldSatisfy` isHalt
+spec :: Spec
+spec = do
+    describe "Brainf*ck" $ do
+        context "Interpreter" $ do
+            it "runs a simple program to halt" $ do
+                let p = initializeProgram program
+                finalState <- execStateT runProgram p
+                finalState `shouldSatisfy` isHalt

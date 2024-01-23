@@ -46,6 +46,7 @@ test-suite brainfck-interpreter-test
     main-is:          Spec.hs
     other-modules:    SpecHelper
                     , Brainfck.ProgramSpec
+                    , Brainfck.InterpreterSpec
     build-depends:    hspec 
                     , hspec-discover
                     , QuickCheck
