@@ -1,9 +1,9 @@
-module Main where
+module Brainfck.InterpreterSpec where
 
+import SpecHelper
 import Control.Monad.State.Lazy
 import Data.Sequence (Seq)
 import qualified Data.Sequence as S
-import System.IO
 
 import Brainfck.Program
 import Brainfck.Interpreter
@@ -25,8 +25,12 @@ instructions = S.fromList
 
 ps = initializeProgram program
 
-main :: IO ()
-main = do
-  hSetBuffering stdout NoBuffering
-  evalStateT runProgram ps
-  putStrLn ""
+execStateT runProgram ps
+
+-- spec :: Spec
+-- spec = do
+--     describe "" $ do
+--         context "" $ do
+--             it "" $ do
+--                 let p = initializeProgram program
+--                 execStateT runProgram p `sohuldSatisfy` isHalt
