@@ -7,7 +7,7 @@
             "adjustBash": true,
             "ghcVersion": "9.4.2",
             "cabalVersion": "3.8.1.0",
-            "globalPackages": "cabal-install hlint hspec-discover ghcid"
+            "globalPackages": "cabal-install haskell-language-server hlint hspec-discover ghcid"
         }
     },
     "customizations": {
