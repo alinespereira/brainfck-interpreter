@@ -6,6 +6,7 @@ module Brainfck.Program
 where
 
 import Control.Arrow (left)
+import Control.Monad (zipWithM)
 import Data.Sequence (Seq)
 import qualified Data.Sequence as S (fromList)
 import Text.Printf (printf)
@@ -38,8 +39,7 @@ parseInstruction ch  = Left (printf "invalid instruction %s" (show ch))
 parseProgram :: String -> Either String Program
 parseProgram = 
   fmap (Program . S.fromList) .
-    sequenceA .
-    zipWith (\i e -> left (prependPos i) e) [0 :: Int ..] .
+    zipWithM (left . prependPos) [0 :: Int ..] .
     map parseInstruction
   where
     prependPos :: Int -> String -> String
