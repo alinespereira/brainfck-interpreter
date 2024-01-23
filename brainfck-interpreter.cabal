@@ -1,4 +1,4 @@
-cabal-version:      3.0
+cabal-version:      3.8
 name:               brainfck-interpreter
 version:            0.1.0.0
 -- synopsis:
@@ -15,7 +15,7 @@ extra-doc-files:    CHANGELOG.md
 
 common properties
     default-language:   Haskell2010
-    build-depends:      base ^>=4.15.1.0
+    build-depends:      base ==4.17.0.0
                       , mtl
                       , containers
 
@@ -27,6 +27,7 @@ library
                     , properties
     exposed-modules:  Brainfck
                     , Brainfck.Program
+                    , Brainfck.ProgramState
                     , Brainfck.Interpreter
     hs-source-dirs:   src
 

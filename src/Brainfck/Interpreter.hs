@@ -2,27 +2,20 @@ module Brainfck.Interpreter where
 
 import Control.Monad.State.Lazy
 import Data.Char (chr, ord)
-import Data.Maybe (fromMaybe)
-import Data.Sequence (Seq, (><))
 import qualified Data.Sequence as S
 
 import Brainfck.Program
-
-data ProgramState = ProgramState
-  { program :: Program
-  , instructionPointer :: Int
-  , dataPointer :: Int
-  , memory :: Seq Int
-  } deriving (Show, Eq)
+import Brainfck.ProgramState
 
 type ProgramStateT = StateT ProgramState IO
 
 initializeProgram :: Program -> ProgramState
 initializeProgram p = ProgramState 
-  { program = p 
-  , instructionPointer = 0
+  { getProgram = p 
+  , getIp = 0
   , dataPointer = 0
   , memory = S.singleton 0
+  , isHalt = S.null . getInstructions $ p
   }
 
 
